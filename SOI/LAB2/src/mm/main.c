@@ -178,3 +178,11 @@ PRIVATE void mm_init()
 	close(mem);
   }
 }
+
+PUBLIC int do_setpri()
+{
+  message m = mm_in;
+  return _taskcall(SYSTASK, SYS_SETPRI, &m); 
+ 
+ 
+}
