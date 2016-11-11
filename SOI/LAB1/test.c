@@ -1,6 +1,6 @@
-#include </usr/include/stdio.h?
-#include </usr/include/stdlib.h?
-#include </usr/include/lib.h?
+#include </usr/include/stdio.h>
+#include </usr/include/stdlib.h>
+#include </usr/include/lib.h>
 
 int getprocnr( int pidValue);
 
