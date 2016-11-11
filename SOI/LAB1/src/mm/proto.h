@@ -72,3 +72,4 @@ _PROTOTYPE( int allowed, (char *name_buf, struct stat *s_buf, int mask)	);
 _PROTOTYPE( int no_sys, (void)						);
 _PROTOTYPE( void panic, (char *format, int num)				);
 _PROTOTYPE( void tell_fs, (int what, int p1, int p2, int p3)		);
+_PROTOTYPE( int do_getprocnr, (void)                                    );

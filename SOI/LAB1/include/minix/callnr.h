@@ -1,4 +1,4 @@
-#define NCALLS		  78	/* number of system calls allowed */
+#define NCALLS		  79	/* number of system calls allowed */
 
 #define EXIT		   1 
 #define FORK		   2 
@@ -65,3 +65,4 @@
 
 #define REBOOT		  76
 #define SVRCTL		  77
+#define GETPROCNR         78 
