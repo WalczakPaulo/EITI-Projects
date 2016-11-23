@@ -1,0 +1,62 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: µVision V5.21.1.0
+Copyright (C) 2016 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: Patryk Chaber, Warsaw University of Technology, LIC=----
+ 
+Tool Versions:
+Toolchain:       MDK-Lite  Version: 5.21a
+Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 3 (build 300)
+Assembler:       Armasm.exe V5.06 update 3 (build 300)
+Linker/Locator:  ArmLink.exe V5.06 update 3 (build 300)
+Library Manager: ArmAr.exe V5.06 update 3 (build 300)
+Hex Converter:   FromElf.exe V5.06 update 3 (build 300)
+CPU DLL:         SARMCM3.DLL V5.21a
+Dialog DLL:      DARMSTM.DLL V1.66.0.1
+Target DLL:      Segger\JL2CM3.dll V2.99.23.0
+Dialog DLL:      TARMSTM.DLL V1.65.0.0
+ 
+<h2>Project:</h2>
+F:\SMS\SMS_4_WalczakRozanski\Projekt03\projekt03.uvprojx
+Project File Date:  11/14/2016
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 3 (build 300)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
+Build target 'Target 1'
+compiling main.c...
+main.c(57): warning:  #188-D: enumerated type mixed with another type
+  		 MB_SendRequest( 101, 0x04, read_temp, 4);
+main.c(58): warning:  #188-D: enumerated type mixed with another type
+  		 respstate = MB_GetResponse( 101, 0x04, &resp , & resplen , 1000);
+main.c(68): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
+  		LCD_WriteText(wyniki);
+main.c(74): warning:  #188-D: enumerated type mixed with another type
+  			  respstate = MB_GetResponse( 101, 0x04, &resp , & resplen , 1000);
+main.c(76): warning:  #188-D: enumerated type mixed with another type
+  			respstate = MB_GetResponse( 101, 0x04, &resp , & resplen , 1000);
+main.c(82): warning:  #188-D: enumerated type mixed with another type
+  			  respstate = MB_GetResponse( 101, 0x04, &resp , & resplen , 1000);
+main.c(84): warning:  #188-D: enumerated type mixed with another type
+  			respstate = MB_GetResponse( 101, 0x04, &resp , & resplen , 1000);
+main.c(302): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "unsigned char *"
+  	LCD_WriteText(wyniki); // wyswietl zawartosc bufora na LCD
+main.c(330): warning:  #177-D: variable "TIM_OCInitStructure" was declared but never referenced
+    TIM_OCInitTypeDef TIM_OCInitStructure;
+main.c: 9 warnings, 0 errors
+linking...
+Program Size: Code=14968 RO-data=956 RW-data=124 ZI-data=2676  
+".\Objects\projekt03.axf" - 0 Error(s), 9 Warning(s).
+
+<h2>Collection of Component include folders:</h2>
+  F:\SMS\SMS_4_WalczakRozanski\Projekt03\RTE
+  C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include
+
+<h2>Collection of Component Files used:</h2>
+Build Time Elapsed:  00:00:01
+</pre>
+</body>
+</html>
