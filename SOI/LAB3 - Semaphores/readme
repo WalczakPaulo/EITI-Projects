@@ -1,0 +1,3 @@
+Bufor 9-elementowy FIFO. Jest jeden producent, jeden konsument, dwóch czytelników. Producent produkuje jeden element, jeżeli jest miejsce w buforze. Konsument zabiera jeden element, jeżeli zostanie on przeczytany, przez co najmniej jednego czytelnika. Czytelnicy mogą równocześnie czytać dany element. Dany element może zostać przeczytany maksymalnie raz przez danego czytelnika.
+
+9-element FIFO buffer. There is one producer, one consumer, two readers. Producer makes one element, if there is free space in buffer. Consumer takes one element, if it were read by at least one Reader. Readers can read together at the same time. Given element cannot be read more than one time by a reader.
