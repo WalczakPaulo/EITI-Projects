@@ -1,9 +1,0 @@
-[PL]
-
-Bufor 9-elementowy FIFO. Jeden producent, jeden konsument, dwaj czytelnicy. Konsument moze usunac element, gdy zostal przeczytany przez co najmniej jednego czytelnika. Czytelnicy moga czytac rownoczesnie. Czytelnik nie moze przeczytac tego samego elementu dwa razy. 
-
-[EN]
-
-9-element FIFO buffer. One producer, one consumer, two readers. Consumer can delete element, when it was read by at least one reader. Reader can read together at the same time. Reader cannot read the same element twice. 
-
-
