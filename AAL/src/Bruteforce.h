@@ -11,9 +11,7 @@ public:
     Bruteforce();
     void calculateBruteforce(int tab[], int size);
     int array[3009];
-    int b[30000001];
-    int c[30000001];
-    int arrOfIndices[30000001];
+    int arrOfIndices[3009];
 };
 
 
