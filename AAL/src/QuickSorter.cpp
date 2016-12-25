@@ -9,21 +9,27 @@ QuickSorter::QuickSorter()
 
 }
 
+
+
 QuickSorter::~QuickSorter()
 {
 
 }
 
-void QuickSorter::sort(int arr[], int start, int end )
+
+
+void QuickSorter::sort(int arr[], int start, int end, int arrayOfIndices[] )
 {
       //  if (arr==NULL)
        //     return ;
+
+
         if( start < end)
         {
             int pIndex;
-            pIndex = partition(arr, start, end);
-            sort(arr, start, pIndex - 1);
-            sort(arr, pIndex + 1 , end);
+            pIndex = partition(arr, start, end, arrayOfIndices);
+            sort(arr, start, pIndex - 1, arrayOfIndices);
+            sort(arr, pIndex + 1 , end, arrayOfIndices);
 
         }
 
@@ -31,7 +37,7 @@ void QuickSorter::sort(int arr[], int start, int end )
 
 }
 
-int QuickSorter::partition(int *arr, int start, int end)
+int QuickSorter::partition(int *arr, int start, int end, int arrayOfIndices[])
 {
     int pivot = arr[end];
     int pIndex = start ;
@@ -41,6 +47,7 @@ int QuickSorter::partition(int *arr, int start, int end)
         if( arr[counter] < pivot)
         {
             swap(arr[counter], arr[pIndex]);
+            swap(arrayOfIndices[counter], arrayOfIndices[pIndex]);
             pIndex++;
         }
 
@@ -48,6 +55,7 @@ int QuickSorter::partition(int *arr, int start, int end)
     }
 
     swap(arr[pIndex], arr[end]);
+    swap(arrayOfIndices[pIndex], arrayOfIndices[end]);
     return pIndex;
 }
 

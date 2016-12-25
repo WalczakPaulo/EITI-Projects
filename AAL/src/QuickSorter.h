@@ -10,10 +10,14 @@ class QuickSorter {
 
 public:
     QuickSorter();
+    QuickSorter(int);
     ~QuickSorter();
-    void sort(int tab[], int left, int right);
+    void sort(int tab[], int left, int right, int[]);
     void swap(int &src, int &dest);
-    int partition(int arr[], int start, int end);
+    int partition(int arr[], int start, int end, int[]);
+    void fillArrayOfIndices();
+
+
 };
 
 
