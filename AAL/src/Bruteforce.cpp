@@ -38,13 +38,18 @@ void Bruteforce::calculateBruteforce(int *tab, int size) {
                         {
                             int someArr[6] = {0};
                             for(int t = 0; t < 6 ; t++) someArr[t] = array[tempTab[t]];
-                            int yes = 0;
-                            if(someArr[5] == someArr[4] && someArr[5] == someArr[3] && someArr[5] == someArr[2] + someArr[1] + someArr[0]) yes = 1;
-                            if(someArr[5] == someArr[4] && someArr[5] == someArr[3] + someArr[0] && someArr[5] == someArr[2] + someArr[1]) yes = 1;
-                            if(yes) {
-                                sidesCombinations.push_back(new Combinations(arrOfIndices[tempTab[0]],arrOfIndices[tempTab[1]],arrOfIndices[tempTab[2]],arrOfIndices[tempTab[3]],arrOfIndices[tempTab[4]],arrOfIndices[tempTab[5]]));
+
+                            if(someArr[5] == someArr[4] && someArr[5] == someArr[3] && someArr[5] == someArr[2] + someArr[1] + someArr[0]){
                                 ans++;
+                                sidesCombinations.push_back(new Combinations(arrOfIndices[tempTab[0]],arrOfIndices[tempTab[1]],arrOfIndices[tempTab[2]],arrOfIndices[tempTab[3]],arrOfIndices[tempTab[4]],arrOfIndices[tempTab[5]],true));
+
                             }
+                            if(someArr[5] == someArr[4] && someArr[5] == someArr[3] + someArr[0] && someArr[5] == someArr[2] + someArr[1]){
+                                sidesCombinations.push_back(new Combinations(arrOfIndices[tempTab[0]],arrOfIndices[tempTab[3]],arrOfIndices[tempTab[1]],arrOfIndices[tempTab[2]],arrOfIndices[tempTab[4]],arrOfIndices[tempTab[5]],false));
+                                ans++;
+
+                            }
+
                         }
 
     cout << "There were found " << ans << " combinations" << endl;
@@ -52,7 +57,9 @@ void Bruteforce::calculateBruteforce(int *tab, int size) {
         cout << "And these are: " << endl;
         int sizeOfVec = sidesCombinations.size();
         for( int i = 0; i < sizeOfVec; i++)
-            sidesCombinations.at(i)->printSides();
+            sidesCombinations.at(i)->printSides(tab);
     }
     getchar();
 }
+
+

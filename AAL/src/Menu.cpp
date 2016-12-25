@@ -8,6 +8,7 @@
 #include <fstream>
 #include "Menu.h"
 #include "Bruteforce.h"
+#include "OptimalAlgorithm.h"
 
 using namespace std;
 
@@ -55,6 +56,9 @@ void Menu::typeChoice(){
             break;
         case 4:
             useBruteforce();
+            break;
+        case 5:
+            useOptimalAlgorithm();
             break;
         case 6:
             showData();
@@ -153,5 +157,15 @@ void Menu::useBruteforce() {
 
     Bruteforce *bruteforce =new Bruteforce();
     bruteforce->calculateBruteforce(a,size);
+    delete(bruteforce);
     showMenu();
+}
+
+void Menu::useOptimalAlgorithm() {
+
+    OptimalAlgorithm *optimalAlgorithm = new OptimalAlgorithm();
+    optimalAlgorithm->calculateSolution(a,size);
+    delete(optimalAlgorithm);
+    showMenu();
+
 }

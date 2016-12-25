@@ -17,6 +17,8 @@ public:
     void showData();
     void typeData();
     void useBruteforce();
+    void useOptimalAlgorithm();
+private:
     int a[1024];
     int size;
 };

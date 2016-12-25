@@ -9,10 +9,12 @@
 class Combinations {
 public:
     Combinations();
-    Combinations(int,int,int,int,int,int);
+    Combinations(int,int,int,int,int,int, bool);
     void setSides(int, int, int, int, int, int);
-    void printSides();
+    void printSides(int array[]);
+private:
     int sidesIndices[6];
+    bool isCombinationTriple;
 };
 
 
