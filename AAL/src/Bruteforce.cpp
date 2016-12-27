@@ -15,7 +15,7 @@ Bruteforce::Bruteforce(): array{0}, arrOfIndices{0} {
 
 }
 
-void Bruteforce::calculateBruteforce(int *tab, int size) {
+int Bruteforce::calculateBruteforce(int *tab, int size) {
     QuickSorter quickSorter = QuickSorter();
     for(int i = 0 ; i < 3009 ; i++)
         arrOfIndices[i] = i;
@@ -59,7 +59,8 @@ void Bruteforce::calculateBruteforce(int *tab, int size) {
         for( int i = 0; i < sizeOfVec; i++)
             sidesCombinations.at(i)->printSides(tab);
     }
-    getchar();
+    cout << "There were found " << ans << " combinations" << endl;
+    return ans;
 }
 
 

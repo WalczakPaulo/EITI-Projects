@@ -1203,8 +1203,8 @@ using ::testing::ElementsAreArray;
 ```
 
 In case the array needs to be dynamically created (and therefore the
-array size cannot be inferred by the compiler), you can give
-`ElementsAreArray()` an additional argument to specify the array size:
+array howManySticks cannot be inferred by the compiler), you can give
+`ElementsAreArray()` an additional argument to specify the array howManySticks:
 
 ```
 using ::testing::ElementsAreArray;
@@ -2475,7 +2475,7 @@ Sometimes you are confident that your tests are correct and may not
 appreciate such friendly messages. Some other times, you are debugging
 your tests or learning about the behavior of the code you are testing,
 and wish you could observe every mock call that happens (including
-argument values and the return value). Clearly, one size doesn't fit
+argument values and the return value). Clearly, one howManySticks doesn't fit
 all.
 
 You can control how much Google Mock tells you using the

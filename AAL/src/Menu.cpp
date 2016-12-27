@@ -13,7 +13,7 @@
 using namespace std;
 
 
-Menu::Menu(): a {0} , size(0)   {
+Menu::Menu(): arrayOfSticks {0} , howManySticks(0)   {
 
 }
 
@@ -106,9 +106,9 @@ void Menu::loadDataFromFile(){
             while (iss >> n)
             {
                 if ( i == 0)
-                    size = n;
+                    howManySticks = n;
                 else
-                    a[i-1] = n;
+                    arrayOfSticks[i-1] = n;
 
                 i++;
             }
@@ -128,11 +128,11 @@ void Menu::loadDataFromFile(){
 
 void Menu::typeData(){
 
-    cout << "Type size of set of sticks:  " << endl;
-    cin >> size;
+    cout << "Type howManySticks of set of sticks:  " << endl;
+    cin >> howManySticks;
     cout << "Now type each stick's length: " << endl;
-    for(int i = 0 ; i < size ; i++)
-        cin >> a[i];
+    for(int i = 0 ; i < howManySticks ; i++)
+        cin >> arrayOfSticks[i];
     cout << "Thanks. Press anything to return to menu..." << endl;
     cin.ignore();
     getchar();
@@ -141,10 +141,10 @@ void Menu::typeData(){
 
 void Menu::showData(){
 
-    cout << " There are " << size << " sticks " << endl;
+    cout << " There are " << howManySticks << " sticks " << endl;
     cout << " The sticks are: " << endl;
-    for(int i = 0; i < size; i++)
-        cout << a[i] << endl;
+    for(int i = 0; i < howManySticks; i++)
+        cout << arrayOfSticks[i] << endl;
 
     cout << "\n Type anything" << endl;
     getchar();
@@ -156,7 +156,8 @@ void Menu::showData(){
 void Menu::useBruteforce() {
 
     Bruteforce *bruteforce =new Bruteforce();
-    bruteforce->calculateBruteforce(a,size);
+    bruteforce->calculateBruteforce(arrayOfSticks,howManySticks);
+    waitForAction();
     delete(bruteforce);
     showMenu();
 }
@@ -164,8 +165,13 @@ void Menu::useBruteforce() {
 void Menu::useOptimalAlgorithm() {
 
     OptimalAlgorithm *optimalAlgorithm = new OptimalAlgorithm();
-    optimalAlgorithm->calculateSolution(a,size);
+    optimalAlgorithm->calculateSolution(arrayOfSticks,howManySticks);
+    waitForAction();
     delete(optimalAlgorithm);
     showMenu();
 
+}
+
+void Menu::waitForAction(){
+    getchar();
 }

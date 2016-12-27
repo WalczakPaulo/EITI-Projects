@@ -9,7 +9,7 @@
 class Bruteforce {
 public:
     Bruteforce();
-    void calculateBruteforce(int tab[], int size);
+    int calculateBruteforce(int tab[], int size);
 private:
     int array[3009];
     int arrOfIndices[3009];

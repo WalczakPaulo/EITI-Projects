@@ -1,5 +1,5 @@
 //
-// Created by Aleksander on 12.11.2016.
+// Created by Paul on 12.11.2016.
 //
 
 #include "gtest/gtest.h"

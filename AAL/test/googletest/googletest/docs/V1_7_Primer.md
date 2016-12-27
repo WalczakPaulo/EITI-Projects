@@ -93,9 +93,9 @@ errors.
 To provide a custom failure message, simply stream it into the macro using the
 `<<` operator, or a sequence of such operators. An example:
 ```
-ASSERT_EQ(x.size(), y.size()) << "Vectors x and y are of unequal length";
+ASSERT_EQ(x.howManySticks(), y.howManySticks()) << "Vectors x and y are of unequal length";
 
-for (int i = 0; i < x.size(); ++i) {
+for (int i = 0; i < x.howManySticks(); ++i) {
   EXPECT_EQ(x[i], y[i]) << "Vectors x and y differ at index " << i;
 }
 ```
@@ -294,7 +294,7 @@ class Queue {
   Queue();
   void Enqueue(const E& element);
   E* Dequeue(); // Returns NULL if the queue is empty.
-  size_t size() const;
+  size_t howManySticks() const;
   ...
 };
 ```
@@ -324,7 +324,7 @@ each test, other than what's already done by the destructor.
 Now we'll write tests using `TEST_F()` and this fixture.
 ```
 TEST_F(QueueTest, IsEmptyInitially) {
-  EXPECT_EQ(0, q0_.size());
+  EXPECT_EQ(0, q0_.howManySticks());
 }
 
 TEST_F(QueueTest, DequeueWorks) {
@@ -334,13 +334,13 @@ TEST_F(QueueTest, DequeueWorks) {
   n = q1_.Dequeue();
   ASSERT_TRUE(n != NULL);
   EXPECT_EQ(1, *n);
-  EXPECT_EQ(0, q1_.size());
+  EXPECT_EQ(0, q1_.howManySticks());
   delete n;
 
   n = q2_.Dequeue();
   ASSERT_TRUE(n != NULL);
   EXPECT_EQ(2, *n);
-  EXPECT_EQ(1, q2_.size());
+  EXPECT_EQ(1, q2_.howManySticks());
   delete n;
 }
 ```

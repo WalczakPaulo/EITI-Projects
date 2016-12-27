@@ -55,7 +55,6 @@ void OptimalAlgorithm::calculateSolution(int *tab, int size) {
     if (ans != 0){
         cout << "And these are: " << endl;
     }
-    getchar();
 
 
 }
