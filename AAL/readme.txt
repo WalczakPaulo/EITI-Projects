@@ -4,8 +4,8 @@ We have S unbreakable sticks with lengths s[i], where i is (1,2,3,....,S). Find 
 to make a Square, using 6 of these sticks and it will tell which sticks should one use.
 
 [PL] 
-Mamy zestaw S nie³amalnych patyków o d³ugoœci s[i], gdzie i to (1,2,3,...,S). Zaproponuj algorytm wyliczaj¹cy na ile sposobów mo¿na zbudowaæ kwadrat
-przy u¿yciu 6 z tych patyków i wyznaczy, które patyki nale¿y u¿yæ.
+Mamy zestaw S nielamalnych patykÃ³w o dlugosci s[i], gdzie i to (1,2,3,...,S). Zaproponuj algorytm wyliczajacy na ile sposobÃ³w mozna zbudowac kwadrat
+przy uzyciu 6 z tych patykÃ³w i wyznaczy, ktÃ³re patyki nalezy uzyc.
 
 
 Project is written in C++. TDD will be used. Library used for is Google TEST.
