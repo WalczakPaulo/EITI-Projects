@@ -96,3 +96,4 @@ void OptimalAlgorithm::calculateSolution(int *tab, int size) {
 
 
 }
+

@@ -8,16 +8,15 @@
 #include <iostream>
 #include <vector>
 #include <cstdio>
-#include <ctime>
-#include <fstream>
+
 using namespace std;
 
 Bruteforce::Bruteforce(): array{0}, arrOfIndices{0} {
 
 }
 
-int Bruteforce::calculateBruteforce(int *tab, int size) {
-    clock_t begin = clock();
+int Bruteforce::calculateBruteforce(int *tab, int size, vector <Combinations*> &sidesCombinations) {
+
     QuickSorter quickSorter = QuickSorter();
     for(int i = 0 ; i < 3009 ; i++)
         arrOfIndices[i] = i;
@@ -29,7 +28,7 @@ int Bruteforce::calculateBruteforce(int *tab, int size) {
 
 
 
-    vector <Combinations*> sidesCombinations;
+
     int tempTab[6]={0};
     for (tempTab[0] = 0; tempTab[0] < n-5; tempTab[0]++)
         for (tempTab[1] = tempTab[0]+1; tempTab[1] < n-4; tempTab[1]++)
@@ -53,28 +52,7 @@ int Bruteforce::calculateBruteforce(int *tab, int size) {
                             }
 
                         }
-    clock_t end = clock();
-    double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
 
-    writeToFile(size, elapsed_secs);
-
-    cout << "There were found " << ans << " combinations" << endl;
-    if (ans != 0){
-        cout << "And these are: " << endl;
-        int sizeOfVec = sidesCombinations.size();
-        for( int i = 0; i < sizeOfVec; i++)
-            sidesCombinations.at(i)->printSides(tab);
-    }
-    cout << "There were found " << ans << " combinations" << endl;
     return ans;
 }
 
-
-void Bruteforce::writeToFile(int size, double runningTime){
-
-    ofstream file;
-    file.open("D:\\Users\\Paul\\ClionProjects\\AAL\\bruteforceTime.txt",fstream::app);
-    file << "\nThe Running time was: " << runningTime << " for the input size of " << size;
-    file.close();
-
-}

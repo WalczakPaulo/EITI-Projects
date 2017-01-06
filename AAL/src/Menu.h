@@ -4,8 +4,9 @@
 
 #ifndef AAL_MENU_H
 #define AAL_MENU_H
-
-
+#include "FileOperations.h"
+#include "Combinations.h"
+#include <vector>
 class Menu {
 public:
     Menu();
@@ -19,9 +20,13 @@ public:
     void useBruteforce();
     void useOptimalAlgorithm();
     void waitForAction();
+    void printSolutions();
 private:
     int arrayOfSticks[1024];
     int howManySticks;
+    FileOperations *fileOperator;
+    vector <Combinations*> *sidesCombinations;
+    int howManyCombinations;
 };
 
 

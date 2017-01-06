@@ -1,0 +1,29 @@
+
+The Running time was: 0 for the input size of 6
+The Running time was: 0 for the input size of 10
+The Running time was: 0.001 for the input size of 15
+The Running time was: 0.009 for the input size of 20
+The Running time was: 0.021 for the input size of 25
+The Running time was: 0.035 for the input size of 30
+The Running time was: 0.064 for the input size of 35
+The Running time was: 0.098 for the input size of 40
+The Running time was: 0.458 for the input size of 50
+The Running time was: 1.02 for the input size of 60
+The Running time was: 2.758 for the input size of 70
+The Running time was: 6.559 for the input size of 80
+The Running time was: 13.634 for the input size of 90
+The Running time was: 25.273 for the input size of 100
+The Running time was: 47.875 for the input size of 110
+The Running time was: 81.082 for the input size of 120
+The Running time was: 131.198 for the input size of 130
+
+
+The Running time was: 0 for the input size of 0
+The Running time was: 0 for the input size of 8
+The Running time was: 0 for the input size of 10
+The Running time was: 0.035 for the input size of 30
+The Running time was: 0 for the input size of 6
+The Running time was: 0 for the input size of 6
+The Running time was: 0 for the input size of 6
+The Running time was: 0 for the input size of 6
+The Running time was: 0 for the input size of 10

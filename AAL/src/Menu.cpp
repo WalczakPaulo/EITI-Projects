@@ -5,16 +5,19 @@
 #include <cstdlib>
 #include <iostream>
 #include <sstream>
+#include <ctime>
 #include <fstream>
+#include <vector>
 #include "Menu.h"
 #include "Bruteforce.h"
 #include "OptimalAlgorithm.h"
-
+#include "FileOperations.h"
 using namespace std;
 
 
-Menu::Menu(): arrayOfSticks {0} , howManySticks(0)   {
-
+Menu::Menu(): arrayOfSticks {0} , howManySticks(0), howManyCombinations(0)   {
+    sidesCombinations = new vector <Combinations*>();
+    fileOperator = new FileOperations("D:\\Users\\Paul\\ClionProjects\\AAL\\bruteforceTime.txt", "D:\\Users\\Paul\\ClionProjects\\AAL\\optimalAlgorithmTime", "D:\\Users\\Paul\\ClionProjects\\AAL\\dataInput.txt");
 }
 
 Menu::~Menu(){
@@ -84,43 +87,7 @@ void Menu::showProjectInfo(){
 
 void Menu::loadDataFromFile(){
 
-    int i = 0;
-
-
-        ifstream infile;
-        infile.open("D:\\Users\\Paul\\ClionProjects\\AAL\\dataInput.txt");
-        if (infile.good())
-            cout<<"Success opening file"<< endl;
-        else {
-            cout << "Error while opening file"<< endl;
-            exit(1);
-        }
-        std::string line;
-
-        while (std::getline(infile, line))
-        {
-            std::istringstream iss(line);
-            int n;
-
-
-            while (iss >> n)
-            {
-                if ( i == 0)
-                    howManySticks = n;
-                else
-                    arrayOfSticks[i-1] = n;
-
-                i++;
-            }
-
-        }
-
-
-
-
-
-
-    cout << "Data read successfully" << endl;
+    howManySticks = fileOperator->loadDataFromFile(arrayOfSticks);
     getchar();
     showMenu();
 
@@ -135,7 +102,7 @@ void Menu::typeData(){
         cin >> arrayOfSticks[i];
     cout << "Thanks. Press anything to return to menu..." << endl;
     cin.ignore();
-    getchar();
+    waitForAction();
     showMenu();
 }
 
@@ -147,7 +114,7 @@ void Menu::showData(){
         cout << arrayOfSticks[i] << endl;
 
     cout << "\n Type anything" << endl;
-    getchar();
+    waitForAction();
 
 
     showMenu();
@@ -156,7 +123,12 @@ void Menu::showData(){
 void Menu::useBruteforce() {
 
     Bruteforce *bruteforce =new Bruteforce();
-    bruteforce->calculateBruteforce(arrayOfSticks,howManySticks);
+    clock_t begin = clock();
+    howManyCombinations = bruteforce->calculateBruteforce(arrayOfSticks,howManySticks, *sidesCombinations);
+    clock_t end = clock();
+    double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
+    fileOperator->writeBruteforceTime(howManySticks, elapsed_secs);
+    printSolutions();
     waitForAction();
     delete(bruteforce);
     showMenu();
@@ -174,4 +146,17 @@ void Menu::useOptimalAlgorithm() {
 
 void Menu::waitForAction(){
     getchar();
+}
+
+void Menu::printSolutions() {
+
+    cout << "There were found " << howManyCombinations << " combinations" << endl;
+    if (howManyCombinations != 0){
+        cout << "And these are: " << endl;
+        int sizeOfVec = sidesCombinations->size();
+        for( int i = 0; i < sizeOfVec; i++)
+            sidesCombinations->at(i)->printSides(arrayOfSticks);
+    }
+
+
 }
