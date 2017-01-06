@@ -25,6 +25,57 @@ void Combinations::setSides(int a , int b , int c , int d , int e , int f) {
     sidesIndices[5] = f;
 }
 
+void Combinations::printSidesSimply(){
+
+    char tab[25][20] = {0};
+    for (int j = 0; j < 20; j++)
+        for (int i = 0; i < 25; i++)
+            tab[i][j] = ' ';
+
+    for (int i = 0; i < 25; i++) {
+        tab[i][0] = 'x';
+        tab[i][19] = 'x';
+    }
+
+    for (int j = 0; j < 20; j++) {
+        tab[0][j] = 'x';
+        tab[24][j] = 'x';
+    }
+
+
+    for (int j = 0; j < 20; j++) {
+        for (int i = 0; i < 25; i++)
+            cout << tab[i][j];
+        cout << endl;
+    }
+
+    if (isCombinationTriple) {
+        cout << "1. Side" << endl;
+        cout << "Length " << sidesIndices[0] << endl;
+        cout << "2. Side" << endl;
+        cout <<  "Length " << sidesIndices[1] << endl;
+        cout << "3. Side" << endl;
+        cout  <<"Length " << sidesIndices[2] << endl;
+        cout << "4. Side" << endl;
+        cout <<  "Length " <<sidesIndices[3] << endl;
+        cout << "Length " << sidesIndices[4] << endl;
+        cout << "Length " << sidesIndices[5] << endl;
+    } else {
+        cout << "1. Side" << endl;
+        cout <<  "Length " <<sidesIndices[5] << endl;
+        cout << "2. Side" << endl;
+        cout << "Length " <<sidesIndices[4] << endl;
+        cout << "3. Side" << endl;
+        cout << "Length " <<sidesIndices[3] << endl;
+        cout << "Length " <<sidesIndices[0] << endl;
+        cout << "4. Side" << endl;
+        cout << "Length " <<sidesIndices[2] << endl;
+        cout << "Length " <<sidesIndices[1] << endl;
+
+    }
+
+}
+
 void Combinations::printSides(int *array) {
 
 

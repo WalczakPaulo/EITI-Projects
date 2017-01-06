@@ -16,6 +16,7 @@ private:
     int onesArray[1024];
     int pairsArray[1024];
     int arrayOfIndices[1024];
+    int whichSticks[1024][1024];
 
 
 };

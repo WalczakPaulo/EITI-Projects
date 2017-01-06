@@ -12,6 +12,7 @@ public:
     Combinations(int,int,int,int,int,int, bool);
     void setSides(int, int, int, int, int, int);
     void printSides(int array[]);
+    void printSidesSimply();
 private:
     int sidesIndices[6];
     bool isCombinationTriple;

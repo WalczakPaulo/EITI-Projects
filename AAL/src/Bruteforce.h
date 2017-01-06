@@ -10,6 +10,7 @@ class Bruteforce {
 public:
     Bruteforce();
     int calculateBruteforce(int tab[], int size);
+    void writeToFile(int, double);
 private:
     int array[3009];
     int arrOfIndices[3009];
