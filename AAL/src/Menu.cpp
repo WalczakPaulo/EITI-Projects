@@ -3,15 +3,13 @@
 //
 #include <iostream>
 #include <cstdlib>
-#include <iostream>
-#include <sstream>
 #include <ctime>
 #include <fstream>
 #include <vector>
+#include <chrono>
 #include "Menu.h"
 #include "Bruteforce.h"
 #include "OptimalAlgorithm.h"
-#include "FileOperations.h"
 using namespace std;
 
 
@@ -123,13 +121,15 @@ void Menu::showData(){
 void Menu::useBruteforce() {
 
     Bruteforce *bruteforce =new Bruteforce();
-    clock_t begin = clock();
+    auto start = std::chrono::high_resolution_clock::now();
     howManyCombinations = bruteforce->calculateBruteforce(arrayOfSticks,howManySticks, *sidesCombinations);
-    clock_t end = clock();
-    double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
-    fileOperator->writeBruteforceTime(howManySticks, elapsed_secs);
+    auto elapsed = std::chrono::high_resolution_clock::now() - start;
+    long long microseconds = std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count();
+    double elapsed_microsecs = microseconds/1000;
+    fileOperator->writeBruteforceTime(howManySticks, elapsed_microsecs);
     printSolutions();
     waitForAction();
+    sidesCombinations->clear();
     delete(bruteforce);
     showMenu();
 }
@@ -137,13 +137,14 @@ void Menu::useBruteforce() {
 void Menu::useOptimalAlgorithm() {
 
     OptimalAlgorithm *optimalAlgorithm = new OptimalAlgorithm();
-    clock_t begin = clock();
+    auto start = std::chrono::high_resolution_clock::now();
     howManyCombinations = optimalAlgorithm->calculateSolution(arrayOfSticks,howManySticks, *sidesCombinations);
-    clock_t end = clock();
-    double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
-    fileOperator->writeOptimalAlgorithmTime(howManySticks, elapsed_secs);
-    printSolutionsForOptimal();
+    auto elapsed = std::chrono::high_resolution_clock::now() - start;
+    long long microseconds = std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count();
+    double elapsed_microsecs = microseconds/1000;
+    fileOperator->writeOptimalAlgorithmTime(howManySticks, elapsed_microsecs);
     waitForAction();
+    sidesCombinations->clear();
     delete(optimalAlgorithm);
     showMenu();
 

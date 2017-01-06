@@ -4,10 +4,7 @@
 
 #include "Bruteforce.h"
 #include "QuickSorter.h"
-#include "Combinations.h"
-#include <iostream>
-#include <vector>
-#include <cstdio>
+
 
 using namespace std;
 

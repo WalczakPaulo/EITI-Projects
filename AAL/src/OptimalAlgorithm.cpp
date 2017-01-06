@@ -1,9 +1,6 @@
 #include "OptimalAlgorithm.h"
 #include "QuickSorter.h"
-#include "Combinations.h"
-#include <iostream>
-#include <vector>
-#include <cstdio>
+
 
 using namespace std;
 
@@ -20,7 +17,7 @@ int OptimalAlgorithm::calculateSolution(int *tab, int size, vector <Combinations
     QuickSorter quickSorter = QuickSorter();
 
     int n = size;
-    int staticCounter[1024]= { 0 };
+    int staticCounter[102400]= { 0 };
     for (int i=1;i<=n;i++) array[i] = tab[i-1], onesArray[array[i]]++;
 
     quickSorter.sort(array,1,n,arrayOfIndices);
@@ -39,7 +36,7 @@ int OptimalAlgorithm::calculateSolution(int *tab, int size, vector <Combinations
             }
         for (int j=1;j<i;j++) {
             pairsArray[array[i] + array[j]]++;
-            if(array[i]>array[i-1]  )
+            if(array[i]>array[i-1] && array[j+1] > array[j] )
             {
                 whichSticks[array[i]+array[j]][++staticCounter[array[i]+array[j]]] = array[i];
                 whichSticks[array[i]+array[j]][++staticCounter[array[i]+array[j]]] = array[j];
@@ -66,7 +63,7 @@ int OptimalAlgorithm::calculateSolution(int *tab, int size, vector <Combinations
                     if(onesArray[array[j]]>=2 && onesArray[array[i]-array[j]]>=2 && onesArray[array[i]]>=2)
                         sidesCombinations.push_back(new Combinations(array[j], array[j], array[i]-array[j], array[i]-array[j],array[i],array[i] ,false));
                     ans+=DD*D*onesArray[array[j]]*onesArray[array[i]-array[j]];
-                    if(onesArray[array[i]]>=2 &&  D!=0)
+                    if(onesArray[array[i]]>=2 && onesArray[array[j]]>=1 && onesArray[array[i]-array[j]] >= 1 && D!=0)
                         for(int k = 0 ; k < counter; k+=2 )
                             sidesCombinations.push_back(new Combinations(array[j], Ds[k+1], Ds[k+2],array[i]-array[j], array[i],array[i], false));
                     if(onesArray[array[j]]>=1 && onesArray[array[i]-array[j]]>=1) {
