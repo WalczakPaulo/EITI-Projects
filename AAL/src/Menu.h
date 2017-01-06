@@ -21,6 +21,7 @@ public:
     void useOptimalAlgorithm();
     void waitForAction();
     void printSolutions();
+    void printSolutionsForOptimal();
 private:
     int arrayOfSticks[1024];
     int howManySticks;

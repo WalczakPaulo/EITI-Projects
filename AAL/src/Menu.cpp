@@ -17,7 +17,7 @@ using namespace std;
 
 Menu::Menu(): arrayOfSticks {0} , howManySticks(0), howManyCombinations(0)   {
     sidesCombinations = new vector <Combinations*>();
-    fileOperator = new FileOperations("D:\\Users\\Paul\\ClionProjects\\AAL\\bruteforceTime.txt", "D:\\Users\\Paul\\ClionProjects\\AAL\\optimalAlgorithmTime", "D:\\Users\\Paul\\ClionProjects\\AAL\\dataInput.txt");
+    fileOperator = new FileOperations("D:\\Users\\Paul\\ClionProjects\\AAL\\bruteforceTime.txt", "D:\\Users\\Paul\\ClionProjects\\AAL\\optimalAlgorithmTime.txt", "D:\\Users\\Paul\\ClionProjects\\AAL\\dataInput.txt");
 }
 
 Menu::~Menu(){
@@ -137,7 +137,12 @@ void Menu::useBruteforce() {
 void Menu::useOptimalAlgorithm() {
 
     OptimalAlgorithm *optimalAlgorithm = new OptimalAlgorithm();
-    optimalAlgorithm->calculateSolution(arrayOfSticks,howManySticks);
+    clock_t begin = clock();
+    howManyCombinations = optimalAlgorithm->calculateSolution(arrayOfSticks,howManySticks, *sidesCombinations);
+    clock_t end = clock();
+    double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
+    fileOperator->writeOptimalAlgorithmTime(howManySticks, elapsed_secs);
+    printSolutionsForOptimal();
     waitForAction();
     delete(optimalAlgorithm);
     showMenu();
@@ -146,6 +151,19 @@ void Menu::useOptimalAlgorithm() {
 
 void Menu::waitForAction(){
     getchar();
+}
+
+void Menu::printSolutionsForOptimal() {
+
+    cout << "There were found " << howManyCombinations << " combinations" << endl;
+    if (howManyCombinations != 0){
+        cout << "And these are: " << endl;
+        int sizeOfVec = sidesCombinations->size();
+        for( int i = 0; i < sizeOfVec; i++)
+            sidesCombinations->at(i)->printSidesSimply();
+    }
+
+
 }
 
 void Menu::printSolutions() {

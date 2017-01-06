@@ -15,10 +15,10 @@ OptimalAlgorithm::~OptimalAlgorithm() {
 
 }
 
-void OptimalAlgorithm::calculateSolution(int *tab, int size) {
+int OptimalAlgorithm::calculateSolution(int *tab, int size, vector <Combinations*> &sidesCombinations) {
 
     QuickSorter quickSorter = QuickSorter();
-    vector <Combinations*> sidesCombinations;
+
     int n = size;
     int staticCounter[1024]= { 0 };
     for (int i=1;i<=n;i++) array[i] = tab[i-1], onesArray[array[i]]++;
@@ -86,13 +86,7 @@ void OptimalAlgorithm::calculateSolution(int *tab, int size) {
             }
         }
 
-    cout << "There were found " << ans << " combinations" << endl;
-     if (ans != 0){
-        cout << "And these are: " << endl;
-        int sizeOfVec = sidesCombinations.size();
-        for( int i = 0; i < sizeOfVec; i++)
-            sidesCombinations.at(i)->printSidesSimply();
-    }
+    return ans;
 
 
 }
