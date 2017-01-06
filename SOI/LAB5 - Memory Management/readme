@@ -1,0 +1,9 @@
+[PL]
+Celem ćwiczenia jest zmiana domyślnego algorytmu przydziału pamięci w
+systemie Minix. Należy umożliwić wybór algorytmu wyboru bloku z listy
+bloków wolnych między standardowym first fit a tzw. algorytmem worst
+fit, czyli takim, w którym wybierany jest blok pamięci z listy wolnych
+bloków o największym rozmiarze.
+
+[ENG]
+Change the default way of allocating memory in Minix OS. Give user the choice of using Worst Fit ( biggest free chunk of memory allocated) algorithm and First Fit ( First free chunk of free memory from the list allocated ) algorithm. 
