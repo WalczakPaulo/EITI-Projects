@@ -1,0 +1,3 @@
+
+The Running time was: 0 for the input size of 30
+The Running time was: 0 for the input size of 30
