@@ -1,1 +1,14 @@
 Time elapsed in miliseconds:
+
+The Running time was: 31 ms for the input size of 140
+The Running time was: 15 ms for the input size of 140
+The Running time was: 15 ms for the input size of 140
+The Running time was: 31 ms for the input size of 140
+The Running time was: 15 ms for the input size of 140
+The Running time was: 0 ms for the input size of 140
+The Running time was: 15 ms for the input size of 140
+The Running time was: 31 ms for the input size of 140
+The Running time was: 31 ms for the input size of 140
+The Running time was: 15 ms for the input size of 140
+The Running time was: 26 ms for the input size of 140
+The Running time was: 14 ms for the input size of 140

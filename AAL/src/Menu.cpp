@@ -127,6 +127,7 @@ void Menu::useBruteforce() {
     long long microseconds = std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count();
     double elapsed_microsecs = microseconds/1000;
     fileOperator->writeBruteforceTime(howManySticks, elapsed_microsecs);
+    fileOperator->writeRawData(howManySticks, elapsed_microsecs);
     printSolutions();
     waitForAction();
     sidesCombinations->clear();
@@ -143,6 +144,8 @@ void Menu::useOptimalAlgorithm() {
     long long microseconds = std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count();
     double elapsed_microsecs = microseconds/1000;
     fileOperator->writeOptimalAlgorithmTime(howManySticks, elapsed_microsecs);
+    fileOperator->writeRawData(howManySticks,elapsed_microsecs);
+    printSolutionsForOptimal();
     waitForAction();
     sidesCombinations->clear();
     delete(optimalAlgorithm);

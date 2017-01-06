@@ -18,6 +18,7 @@ public:
     string getOptimalAlgorithmFile();
     string getInputFile();
     void writeBruteforceTime(int,double);
+    void writeRawData(int, double); // for MATLAB
     void writeOptimalAlgorithmTime(int, double);
     int loadDataFromFile(int array[]);
 private:

@@ -20,7 +20,7 @@ FileOperations::FileOperations(string brute, string optimal, string input) {
 void FileOperations::writeBruteforceTime(int size, double runningTime) {
     ofstream file;
     file.open(getBruteforceFile(),fstream::app);
-    file << "\nThe Running time was: " << runningTime << " for the input size of " << size;
+    file << "\nThe Running time was: " << runningTime << " ms for the input size of " << size;
     file.close();
 
 }
@@ -28,7 +28,15 @@ void FileOperations::writeBruteforceTime(int size, double runningTime) {
 void FileOperations::writeOptimalAlgorithmTime(int size, double runningTime) {
     ofstream file;
     file.open(getOptimalAlgorithmFile(),fstream::app);
-    file << "\nThe Running time was: " << runningTime << " for the input size of " << size;
+    file << "\nThe Running time was: " << runningTime << " ms for the input size of " << size;
+    file.close();
+}
+
+void FileOperations::writeRawData(int size, double runningTime){
+    ofstream file;
+    file.open("D:\\Users\\Paul\\ClionProjects\\AAL\\rawRunningTimeData.txt" ,fstream::app);
+    file  << runningTime << "\n";
+    file << size << "\n";
     file.close();
 }
 
