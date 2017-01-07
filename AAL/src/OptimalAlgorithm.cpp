@@ -16,7 +16,8 @@ OptimalAlgorithm::~OptimalAlgorithm() {
 int OptimalAlgorithm::calculateSolution(int *tab, int size, vector <Combinations*> &sidesCombinations) {
     auto start = std::chrono::high_resolution_clock::now();
     QuickSorter quickSorter = QuickSorter();
-
+    for(int i = 0 ; i < 3009 ; i++)
+        arrayOfIndices[i] = i;
     int n = size;
     int staticCounter[102400]= { 0 };
     for (int i=1;i<=n;i++) array[i] = tab[i-1], onesArray[array[i]]++;
@@ -31,11 +32,11 @@ int OptimalAlgorithm::calculateSolution(int *tab, int size, vector <Combinations
             if (array[s]>array[s-1]) {
                 ans += 1ll * onesArray[array[s]] * (onesArray[array[s]] - 1) * (onesArray[array[s]] - 2) / 6 *
                        pairsArray[array[s] - array[i]];
-                if(onesArray[array[s]]>=3)
-                    for(int k = 0; k < staticCounter[array[s] - array[i]]; k+=2)
-                        sidesCombinations.push_back(new Combinations(array[s],array[s],array[s], array[i], whichSticks[array[s]-array[i]][k+1], whichSticks[array[s]-array[i]][k+2], true));
-
+                if (onesArray[array[s]] >= 3)
+                    for (int k = 0; k < staticCounter[array[s] - array[i]]; k += 2)
+                      sidesCombinations.push_back(new Combinations(array[s],array[s],array[s], array[i], whichSticks[array[s]-array[i]][k+1], whichSticks[array[s]-array[i]][k+2], true));
             }
+
         for (int j=1;j<i;j++) {
             pairsArray[array[i] + array[j]]++;
             if(array[i]>array[i-1] && array[j+1] > array[j] )
@@ -60,7 +61,7 @@ int OptimalAlgorithm::calculateSolution(int *tab, int size, vector <Combinations
             int counter = 0;
             int Ds[1024] = {0};
             int j = 1;
-            for (j=1;array[j]*2<array[i];j++)
+            for (j=1; array[i] > array[j] * 2; j++)
                 if (array[j]>array[j-1]){
                     ans+=DD*onesArray[array[j]]*(onesArray[array[j]]-1)/2*onesArray[array[i]-array[j]]*(onesArray[array[i]-array[j]]-1)/2;
                     if(onesArray[array[j]]>=2 && onesArray[array[i]-array[j]]>=2 && onesArray[array[i]]>=2)

@@ -22,3 +22,7 @@ The Running time was: 3 ms for the input size of 20
 The Running time was: 1137 ms for the input size of 60
 The Running time was: 1192 ms for the input size of 60
 The Running time was: 1167 ms for the input size of 60
+The Running time was: 1661 ms for the input size of 60
+The Running time was: 1230 ms for the input size of 60
+The Running time was: 1215 ms for the input size of 60
+The Running time was: 1266 ms for the input size of 60
