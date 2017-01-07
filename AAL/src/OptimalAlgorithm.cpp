@@ -1,3 +1,4 @@
+#include <chrono>
 #include "OptimalAlgorithm.h"
 #include "QuickSorter.h"
 
@@ -13,7 +14,7 @@ OptimalAlgorithm::~OptimalAlgorithm() {
 }
 
 int OptimalAlgorithm::calculateSolution(int *tab, int size, vector <Combinations*> &sidesCombinations) {
-
+    auto start = std::chrono::high_resolution_clock::now();
     QuickSorter quickSorter = QuickSorter();
 
     int n = size;
@@ -21,7 +22,8 @@ int OptimalAlgorithm::calculateSolution(int *tab, int size, vector <Combinations
     for (int i=1;i<=n;i++) array[i] = tab[i-1], onesArray[array[i]]++;
 
     quickSorter.sort(array,1,n,arrayOfIndices);
-    long long ans=0,D,DD;
+    long long ans=0,D = 0,DD = 0;
+
 
 
     for (int i=1;i<=n;i++){
@@ -48,7 +50,8 @@ int OptimalAlgorithm::calculateSolution(int *tab, int size, vector <Combinations
         }
     }
 
-
+    auto elapsed = std::chrono::high_resolution_clock::now() - start;
+    long long microseconds = std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count();
     for (int i=1;i<=n;i++)
         if (array[i]!=array[i-1] && onesArray[array[i]]>1)
         {

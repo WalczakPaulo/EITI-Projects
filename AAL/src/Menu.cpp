@@ -18,10 +18,10 @@ Menu::Menu(): arrayOfSticks {0} , howManySticks(0), howManyCombinations(0)   {
     fileOperator = new FileOperations("D:\\Users\\Paul\\ClionProjects\\AAL\\bruteforceTime.txt", "D:\\Users\\Paul\\ClionProjects\\AAL\\optimalAlgorithmTime.txt", "D:\\Users\\Paul\\ClionProjects\\AAL\\dataInput.txt");
 }
 
-Menu::~Menu(){
-
+Menu::~Menu() {
+    delete(fileOperator);
+    delete(sidesCombinations);
 }
-
 void Menu::showMenu(){
 
     system("CLS");
@@ -130,8 +130,9 @@ void Menu::useBruteforce() {
     fileOperator->writeRawData(howManySticks, elapsed_microsecs);
     printSolutions();
     waitForAction();
-    sidesCombinations->clear();
+    delete(sidesCombinations);
     delete(bruteforce);
+    sidesCombinations = new vector<Combinations*>();
     showMenu();
 }
 
@@ -145,10 +146,11 @@ void Menu::useOptimalAlgorithm() {
     double elapsed_microsecs = microseconds/1000;
     fileOperator->writeOptimalAlgorithmTime(howManySticks, elapsed_microsecs);
     fileOperator->writeRawData(howManySticks,elapsed_microsecs);
-    printSolutionsForOptimal();
+   printSolutionsForOptimal();
     waitForAction();
-    sidesCombinations->clear();
+    delete(sidesCombinations);
     delete(optimalAlgorithm);
+    sidesCombinations = new vector<Combinations*>();
     showMenu();
 
 }
