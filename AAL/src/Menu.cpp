@@ -3,7 +3,6 @@
 //
 #include <iostream>
 #include <cstdlib>
-#include <ctime>
 #include <fstream>
 #include <vector>
 #include <chrono>
@@ -13,7 +12,8 @@
 using namespace std;
 
 
-Menu::Menu(): arrayOfSticks {0} , howManySticks(0), howManyCombinations(0)   {
+
+Menu::Menu(): arrayOfSticks {0} , howManySticks(0), howManyCombinations(0), timeExecution(0), whichAlgorithmWasUsed(0)   {
     sidesCombinations = new vector <Combinations*>();
     sidesCombinations->reserve(100000);
     fileOperator = new FileOperations("D:\\Users\\Paul\\ClionProjects\\AAL\\bruteforceTime.txt", "D:\\Users\\Paul\\ClionProjects\\AAL\\optimalAlgorithmTime.txt", "D:\\Users\\Paul\\ClionProjects\\AAL\\dataInput.txt");
@@ -32,7 +32,9 @@ void Menu::showMenu(){
     cout << "3. Type data by yourself. " << endl;
     cout << "4. Use bruteforce algorithm. " << endl;
     cout << "5. Use optimized algorithm. " << endl;
-    cout << "6. Show data. \n" << endl;
+    cout << "6. Generate Data, measure time and present the job. " << endl;
+    cout << "7. Show data. " << endl;
+    cout << "8. Securely finish the program. \n" << endl;
 
 
     typeChoice();
@@ -58,15 +60,62 @@ void Menu::typeChoice(){
             break;
         case 4:
             useBruteforce();
+            presentJob();
+            cleanTheMess();
             break;
         case 5:
             useOptimalAlgorithm();
+            presentJob();
+            cleanTheMess();
             break;
         case 6:
+            fullEngineExecution(); // generate data, measure time and show the job.
+            break;
+        case 7:
             showData();
+            break;
+        case 8:
+            exitProgram();
             break;
         default:
             showMenu();
+    }
+
+}
+
+int Menu::exitProgram(){
+
+    return 0; // bye bye
+
+}
+
+void Menu::presentJob() {
+    char answer;
+    cout << "Do you want to see the results ? (y/n)" << endl;
+    cin >> answer;
+    if ( answer == 'y' ) {
+            printSolutions();
+    }
+    else ;
+    cin.ignore();
+    waitForAction();
+
+}
+
+void Menu::fullEngineExecution(){
+    generateRandomData();
+    useOptimalAlgorithm();
+    presentJob();
+    cleanTheMess();
+}
+
+void Menu::generateRandomData() {
+
+    howManySticks = rand()%200;
+    for(int i = 0; i < howManySticks; i++) {
+        arrayOfSticks[i] = rand()%100;
+        while(arrayOfSticks[i]==0)
+            arrayOfSticks[i] = rand()%100;
     }
 
 }
@@ -119,6 +168,13 @@ void Menu::showData(){
     showMenu();
 }
 
+void Menu::cleanTheMess(){
+    delete(sidesCombinations);
+    sidesCombinations = new vector<Combinations*>();
+    sidesCombinations->reserve(10000);
+    showMenu();
+}
+
 void Menu::useBruteforce() {
 
     Bruteforce *bruteforce =new Bruteforce();
@@ -126,16 +182,13 @@ void Menu::useBruteforce() {
     howManyCombinations = bruteforce->calculateBruteforce(arrayOfSticks,howManySticks, *sidesCombinations);
     auto elapsed = std::chrono::high_resolution_clock::now() - start;
     long long microseconds = std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count();
-    double elapsed_microsecs = microseconds/1000;
-    fileOperator->writeBruteforceTime(howManySticks, elapsed_microsecs);
-    fileOperator->writeRawData(howManySticks, elapsed_microsecs);
-   // printSolutions();
-    waitForAction();
-    delete(sidesCombinations);
+    double timeExecution = microseconds/1000;
+    whichAlgorithmWasUsed = 0;
+    fileOperator->writeBruteforceTime(howManySticks, timeExecution);
+    fileOperator->writeRawData(howManySticks, timeExecution);
     delete(bruteforce);
-    sidesCombinations = new vector<Combinations*>();
-    showMenu();
 }
+
 
 void Menu::useOptimalAlgorithm() {
 
@@ -144,16 +197,11 @@ void Menu::useOptimalAlgorithm() {
     howManyCombinations = optimalAlgorithm->calculateSolution(arrayOfSticks,howManySticks, *sidesCombinations);
     auto elapsed = std::chrono::high_resolution_clock::now() - start;
     long long microseconds = std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count();
-    double elapsed_microsecs = microseconds/1000;
-    fileOperator->writeOptimalAlgorithmTime(howManySticks, elapsed_microsecs);
-    fileOperator->writeRawData(howManySticks,elapsed_microsecs);
-   // printSolutionsForOptimal();
-    waitForAction();
-    delete(sidesCombinations);
+    double timeExecution = microseconds/1000;
+    whichAlgorithmWasUsed = 1;
+    fileOperator->writeOptimalAlgorithmTime(howManySticks, timeExecution);
+    fileOperator->writeRawData(howManySticks,timeExecution);
     delete(optimalAlgorithm);
-    sidesCombinations = new vector<Combinations*>();
-    sidesCombinations->reserve(100000);
-    showMenu();
 
 }
 
@@ -161,28 +209,27 @@ void Menu::waitForAction(){
     getchar();
 }
 
-void Menu::printSolutionsForOptimal() {
 
-    cout << "There were found " << howManyCombinations << " combinations" << endl;
-    if (howManyCombinations != 0){
-        cout << "And these are: " << endl;
-        int sizeOfVec = sidesCombinations->size();
-        for( int i = 0; i < sizeOfVec; i++)
-            sidesCombinations->at(i)->printSidesSimply();
-    }
-
-
-}
 
 void Menu::printSolutions() {
 
-    cout << "There were found " << howManyCombinations << " combinations" << endl;
+
     if (howManyCombinations != 0){
         cout << "And these are: " << endl;
         int sizeOfVec = sidesCombinations->size();
-        for( int i = 0; i < sizeOfVec; i++)
-            sidesCombinations->at(i)->printSides(arrayOfSticks);
+        if (whichAlgorithmWasUsed == 0)
+            for( int i = 0; i < sizeOfVec; i++)
+                sidesCombinations->at(i)->printSides(arrayOfSticks);
+        else
+            for( int i = 0; i < sizeOfVec; i++)
+                sidesCombinations->at(i)->printSidesSimply();
+
     }
 
+    cout << "There were found " << howManyCombinations << " combinations" << endl;
+    showExecutionTime();
+}
 
+void Menu::showExecutionTime(){
+    cout << "Execution of program took: " << timeExecution << " ms" << endl;
 }

@@ -162,3 +162,16 @@ The Running time was: 27 ms for the input size of 190
 The Running time was: 28 ms for the input size of 190
 The Running time was: 29 ms for the input size of 190
 The Running time was: 28 ms for the input size of 190
+The Running time was: 0 ms for the input size of 41
+The Running time was: 0 ms for the input size of 41
+The Running time was: 0 ms for the input size of 41
+The Running time was: 282 ms for the input size of 133
+The Running time was: 0 ms for the input size of 7
+The Running time was: 0 ms for the input size of 6
+The Running time was: 1 ms for the input size of 41
+The Running time was: 0 ms for the input size of 6
+The Running time was: 0 ms for the input size of 7
+The Running time was: 0 ms for the input size of 7
+The Running time was: 0 ms for the input size of 41
+The Running time was: 0 ms for the input size of 41
+The Running time was: 283 ms for the input size of 133

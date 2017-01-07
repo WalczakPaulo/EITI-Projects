@@ -21,13 +21,20 @@ public:
     void useOptimalAlgorithm();
     void waitForAction();
     void printSolutions();
-    void printSolutionsForOptimal();
+    int exitProgram();
+    void fullEngineExecution();
+    void generateRandomData();
+    void showExecutionTime();
+    void cleanTheMess();
+    void presentJob();
 private:
     int arrayOfSticks[1024];
     int howManySticks;
     FileOperations *fileOperator;
     vector <Combinations*> *sidesCombinations;
     int howManyCombinations;
+    double timeExecution;
+    bool whichAlgorithmWasUsed;
 };
 
 
