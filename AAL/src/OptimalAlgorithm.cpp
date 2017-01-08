@@ -14,7 +14,6 @@ OptimalAlgorithm::~OptimalAlgorithm() {
 }
 
 int OptimalAlgorithm::calculateSolution(int *tab, int size, vector <Combinations*> &sidesCombinations) {
-    auto start = std::chrono::high_resolution_clock::now();
     QuickSorter quickSorter = QuickSorter();
     for(int i = 0 ; i < 3009 ; i++)
         arrayOfIndices[i] = i;
@@ -41,18 +40,21 @@ int OptimalAlgorithm::calculateSolution(int *tab, int size, vector <Combinations
             pairsArray[array[i] + array[j]]++;
             if(array[i]>array[i-1] && array[j+1] > array[j] )
             {
-                whichSticks[array[i]+array[j]][++staticCounter[array[i]+array[j]]] = array[i];
-                whichSticks[array[i]+array[j]][++staticCounter[array[i]+array[j]]] = array[j];
+                staticCounter[array[i]+array[j]] += 1;
+                whichSticks[array[i]+array[j]][staticCounter[array[i]+array[j]]] = array[i];
+                staticCounter[array[i]+array[j]] += 1;
+                whichSticks[array[i]+array[j]][staticCounter[array[i]+array[j]]] = array[j];
             }
-            else if (array[i] > array[i-2]){
-                whichSticks[2*array[i]][++staticCounter[array[i]*2]] = array[i];
-                whichSticks[2*array[i]][++staticCounter[array[i]*2]] = array[i];
+            else if (array[i] > array[i-2] && (j==i-2)){
+                staticCounter[array[i]*2] += 1;
+                whichSticks[2*array[i]][staticCounter[array[i]*2]] = array[i];
+                staticCounter[array[i]*2] += 1;
+                whichSticks[2*array[i]][staticCounter[array[i]*2]] = array[i];
             }
         }
     }
 
-    auto elapsed = std::chrono::high_resolution_clock::now() - start;
-    long long microseconds = std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count();
+
     for (int i=1;i<=n;i++)
         if (array[i]!=array[i-1] && onesArray[array[i]]>1)
         {
