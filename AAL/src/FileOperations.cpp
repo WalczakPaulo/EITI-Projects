@@ -96,3 +96,14 @@ int FileOperations::loadDataFromFile(int *array) {
     cout << "Data read successfully" << endl;
     return sizeOfInput;
 }
+
+void FileOperations::createInputFile() {
+    string inputFile;
+    cout << "Enter your string for input file. " << endl;
+    cin >> inputFile;
+    ofstream file;
+    setInputFile(inputFile);
+    file.open(inputFile,fstream::app);
+    file << "\nThe Running time was:   ms for the input size of " ;
+    file.close();
+}

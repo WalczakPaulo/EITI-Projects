@@ -20,6 +20,7 @@ public:
     void writeBruteforceTime(int,double);
     void writeRawData(int, double); // for MATLAB
     void writeOptimalAlgorithmTime(int, double);
+    void createInputFile();
     int loadDataFromFile(int array[]);
 private:
     string bruteforceFile;

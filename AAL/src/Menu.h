@@ -25,10 +25,11 @@ public:
     void fullEngineExecution();
     void generateRandomData();
     void showExecutionTime();
+    void useSimpleOptimal();
     void cleanTheMess();
     void presentJob();
 private:
-    int arrayOfSticks[1024];
+    int arrayOfSticks[102400];
     int howManySticks;
     FileOperations *fileOperator;
     vector <Combinations*> *sidesCombinations;

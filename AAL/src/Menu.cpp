@@ -15,7 +15,7 @@ using namespace std;
 
 Menu::Menu(): arrayOfSticks {0} , howManySticks(0), howManyCombinations(0), timeExecution(0), whichAlgorithmWasUsed(0)   {
     sidesCombinations = new vector <Combinations*>();
-    sidesCombinations->reserve(100000);
+    sidesCombinations->reserve(10000000);
     fileOperator = new FileOperations("D:\\Users\\Paul\\ClionProjects\\AAL\\bruteforceTime.txt", "D:\\Users\\Paul\\ClionProjects\\AAL\\optimalAlgorithmTime.txt", "D:\\Users\\Paul\\ClionProjects\\AAL\\dataInput.txt");
 }
 
@@ -24,7 +24,6 @@ Menu::~Menu() {
     delete(sidesCombinations);
 }
 void Menu::showMenu(){
-
     system("CLS");
     cout << " ___________________ Analysis of Algorithms ___________________" << endl;
     cout << "1. Show project info. " << endl;
@@ -34,7 +33,8 @@ void Menu::showMenu(){
     cout << "5. Use optimized algorithm. " << endl;
     cout << "6. Generate Data, measure time and present the job. " << endl;
     cout << "7. Show data. " << endl;
-    cout << "8. Securely finish the program. \n" << endl;
+    cout << "8. Set input file" << endl;
+    cout << "9. Securely finish the program. \n" << endl;
 
 
     typeChoice();
@@ -67,14 +67,18 @@ void Menu::typeChoice(){
             useOptimalAlgorithm();
             presentJob();
             cleanTheMess();
+            showMenu();
             break;
         case 6:
             fullEngineExecution(); // generate data, measure time and show the job.
+            showMenu();
             break;
         case 7:
             showData();
             break;
         case 8:
+            fileOperator->createInputFile();
+        case 9:
             exitProgram();
             break;
         default:
@@ -103,19 +107,29 @@ void Menu::presentJob() {
 }
 
 void Menu::fullEngineExecution(){
+    long long ans1[4] = {};
+    long long ans2[4] = {};
+    howManySticks = 100000;
     generateRandomData();
-    useOptimalAlgorithm();
-    presentJob();
-    cleanTheMess();
+    for(int i = 0 ; i < 20; i++ ) {
+        howManySticks = i * 5000;
+        useSimpleOptimal();
+        //ans1[i%20] = howManyCombinations;
+        //useSimpleOptimal();
+        //ans2[i%20] = howManyCombinations;
+        //if (ans1[i%20]!=ans2[i%20])
+         //   cout << " okejjj" << endl;
+        //    presentJob();
+        cleanTheMess();
+    }
 }
 
 void Menu::generateRandomData() {
 
-    howManySticks = rand()%200;
     for(int i = 0; i < howManySticks; i++) {
-        arrayOfSticks[i] = rand()%100;
+        arrayOfSticks[i] = rand()%200;
         while(arrayOfSticks[i]==0)
-            arrayOfSticks[i] = rand()%100;
+            arrayOfSticks[i] = rand()%200;
     }
 
 }
@@ -169,10 +183,18 @@ void Menu::showData(){
 }
 
 void Menu::cleanTheMess(){
-    delete(sidesCombinations);
-    sidesCombinations = new vector<Combinations*>();
-    sidesCombinations->reserve(10000);
-    showMenu();
+    cout << "start cleaning" << endl;
+    cout << sidesCombinations->max_size() << endl;
+    cout << sidesCombinations->size() << endl;
+
+    for (std::vector< Combinations *>::iterator it = sidesCombinations->begin() ; it != sidesCombinations->end(); ++it)
+    {
+        delete (*it);
+    }
+    cout << "deleted" << endl;
+    sidesCombinations->clear();
+    cout << sidesCombinations->size() << endl;
+    cout << "End of cleaning" << endl;
 }
 
 void Menu::useBruteforce() {
@@ -189,6 +211,18 @@ void Menu::useBruteforce() {
     delete(bruteforce);
 }
 
+void Menu::useSimpleOptimal() {
+    OptimalAlgorithm *optimalAlgorithm = new OptimalAlgorithm();
+    auto start = std::chrono::high_resolution_clock::now();
+    howManyCombinations = optimalAlgorithm->calculateSimple(arrayOfSticks,howManySticks);
+    auto elapsed = std::chrono::high_resolution_clock::now() - start;
+    long long microseconds = std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count();
+    double timeExecution = microseconds/1000;
+    whichAlgorithmWasUsed = 1;
+    fileOperator->writeOptimalAlgorithmTime(howManySticks, timeExecution);
+    fileOperator->writeRawData(howManySticks,timeExecution);
+    delete(optimalAlgorithm);
+}
 
 void Menu::useOptimalAlgorithm() {
 

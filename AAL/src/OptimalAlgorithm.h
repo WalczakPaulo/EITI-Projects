@@ -13,14 +13,15 @@ class OptimalAlgorithm {
 public:
     OptimalAlgorithm();
     ~OptimalAlgorithm();
+    int calculateSimple(int tab[], int size);
     int calculateSolution(int tab[], int size, vector<Combinations*> &sidesCombinations);
 private:
-    int array[1024];
+    int array[102400];
     int onesArray[102400];
     int pairsArray[102400];
     int arrayOfIndices[102400];
     int whichSticks[102400][1024];
-
+    int pairsForPrint[102400][1024];
 
 };
 
