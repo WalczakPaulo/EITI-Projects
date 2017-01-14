@@ -387,3 +387,47 @@ The Running time was: 11244 ms for the input size of 55000
 The Running time was: 12200 ms for the input size of 60000
 The Running time was: 13634 ms for the input size of 65000
 The Running time was: 15768 ms for the input size of 70000
+The Running time was: 0 ms for the input size of 0
+The Running time was: 95 ms for the input size of 5000
+The Running time was: 358 ms for the input size of 10000
+The Running time was: 745 ms for the input size of 15000
+The Running time was: 1313 ms for the input size of 20000
+The Running time was: 2001 ms for the input size of 25000
+The Running time was: 2868 ms for the input size of 30000
+The Running time was: 4002 ms for the input size of 35000
+The Running time was: 7361 ms for the input size of 40000
+The Running time was: 6440 ms for the input size of 45000
+The Running time was: 7829 ms for the input size of 50000
+The Running time was: 9425 ms for the input size of 55000
+The Running time was: 11323 ms for the input size of 60000
+The Running time was: 13233 ms for the input size of 65000
+The Running time was: 15326 ms for the input size of 70000
+The Running time was: 17512 ms for the input size of 75000
+The Running time was: 21975 ms for the input size of 80000
+The Running time was: 22344 ms for the input size of 85000
+The Running time was: 25055 ms for the input size of 90000
+The Running time was: 27913 ms for the input size of 95000
+
+
+__________________________________________________________
+
+The Running time was: 0 ms for the input size of 0
+The Running time was: 93 ms for the input size of 5000
+The Running time was: 347 ms for the input size of 10000
+The Running time was: 735 ms for the input size of 15000
+The Running time was: 1290 ms for the input size of 20000
+The Running time was: 1996 ms for the input size of 25000
+The Running time was: 2978 ms for the input size of 30000
+The Running time was: 3852 ms for the input size of 35000
+The Running time was: 5075 ms for the input size of 40000
+The Running time was: 6827 ms for the input size of 45000
+The Running time was: 8428 ms for the input size of 50000
+The Running time was: 9813 ms for the input size of 55000
+The Running time was: 11722 ms for the input size of 60000
+The Running time was: 13709 ms for the input size of 65000
+The Running time was: 16363 ms for the input size of 70000
+The Running time was: 18440 ms for the input size of 75000
+The Running time was: 20577 ms for the input size of 80000
+The Running time was: 22412 ms for the input size of 85000
+The Running time was: 27450 ms for the input size of 90000
+The Running time was: 33576 ms for the input size of 95000

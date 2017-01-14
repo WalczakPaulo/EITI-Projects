@@ -19,9 +19,9 @@ public:
     void showData();
     void typeData();
     void useBruteforce();
-    void useOptimalAlgorithm();
+    void useOptimalAlgorithm(); // method, with using vectors as container for sides combinations
     void waitForAction();
-    void printSolutions();
+    void printSolutions(); // for useOptimalAlgorithm method
     int exitProgram();
     void fullEngineExecution();
     void generateRandomData();

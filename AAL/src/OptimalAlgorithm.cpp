@@ -42,7 +42,7 @@ void OptimalAlgorithm::showCombinations(int size) {
                 }
             }
 
-
+        /***Duplicates***/
         for (int i = 1; i <= size; i++)
             if (array[i] != array[i - 1] && onesArray[array[i]] > 1) {
 
@@ -64,9 +64,6 @@ void OptimalAlgorithm::showCombinations(int size) {
                             Ds[++counter] = array[j];
                             Ds[++counter] = array[i] - array[j];
                         }
-
-
-
                     }
                 if (array[i] % 2 == 0) {
                     if (onesArray[array[i] / 2] >= 4)
@@ -78,7 +75,6 @@ void OptimalAlgorithm::showCombinations(int size) {
                             cout << "1. Side: " << array[i] << "\n2. Side: " << array[i] << "\n3. Side: " << array[i] / 2
                                  << "," << array[i] / 2 <<
                                  "\n4. Side: " << Ds[++k] << "," << Ds[++k] << endl << endl;
-
                 }
             }
 
@@ -122,8 +118,6 @@ int OptimalAlgorithm::calculateSimple(int *tab, int size) {
                 if (array[j]>array[j-1]){
                     ans+=DD*onesArray[array[j]]*(onesArray[array[j]]-1)/2*onesArray[array[i]-array[j]]*(onesArray[array[i]-array[j]]-1)/2;
                     ans+=DD*D*onesArray[array[j]]*onesArray[array[i]-array[j]];
-
-
                     D+= onesArray[array[j]]*onesArray[array[i]-array[j]];
 
 
