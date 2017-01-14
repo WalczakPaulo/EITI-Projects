@@ -65,7 +65,7 @@ void Menu::typeChoice(){
             break;
         case 5:
             useSimpleOptimal();
-            showCombinations();
+            presentJob();
             waitForAction();
             cleanTheMess();
             showMenu();
@@ -99,7 +99,9 @@ void Menu::presentJob() {
     cout << "Do you want to see the results ? (y/n)" << endl;
     cin >> answer;
     if ( answer == 'y' ) {
-            printSolutions();
+            showCombinations();
+            cout << "There were found " << howManyCombinations << " combinations" << endl;
+            showExecutionTime();
     }
     else ;
     cin.ignore();
@@ -108,20 +110,12 @@ void Menu::presentJob() {
 }
 
 void Menu::fullEngineExecution(){
-   
+
     howManySticks = 100000;
     generateRandomData();
     for(int i = 0 ; i < 20; i++ ) {
         howManySticks = i * 5000;
         useSimpleOptimal();
-        //ans1[i%20] = howManyCombinations;
-        //useSimpleOptimal();
-        //ans2[i%20] = howManyCombinations;
-        //if (ans1[i%20]!=ans2[i%20])
-         //   cout << " okejjj" << endl;
-        //    presentJob();
-        showCombinations();
-        waitForAction();
         cleanTheMess();
     }
 }
@@ -185,18 +179,12 @@ void Menu::showData(){
 }
 
 void Menu::cleanTheMess(){
-    cout << "start cleaning" << endl;
-    cout << sidesCombinations->max_size() << endl;
-    cout << sidesCombinations->size() << endl;
-
+    cout << "Start cleaning..." << endl;
     for (std::vector< Combinations *>::iterator it = sidesCombinations->begin() ; it != sidesCombinations->end(); ++it)
     {
         delete (*it);
     }
-    cout << "deleted" << endl;
-    sidesCombinations->clear();
-    cout << sidesCombinations->size() << endl;
-    cout << "End of cleaning" << endl;
+    cout << "End of cleaning..." << endl;
     delete(optimalAlgorithm);
 }
 
@@ -216,6 +204,7 @@ void Menu::useBruteforce() {
 
 void Menu::useSimpleOptimal() {
     optimalAlgorithm = new OptimalAlgorithm();
+    cout << "Start the job..." << endl;
     auto start = std::chrono::high_resolution_clock::now();
     howManyCombinations = optimalAlgorithm->calculateSimple(arrayOfSticks,howManySticks);
     auto elapsed = std::chrono::high_resolution_clock::now() - start;
@@ -230,6 +219,7 @@ void Menu::useSimpleOptimal() {
 void Menu::useOptimalAlgorithm() {
 
     optimalAlgorithm = new OptimalAlgorithm();
+    cout << "Start the job " << endl;
     auto start = std::chrono::high_resolution_clock::now();
     howManyCombinations = optimalAlgorithm->calculateSolution(arrayOfSticks,howManySticks, *sidesCombinations);
     auto elapsed = std::chrono::high_resolution_clock::now() - start;

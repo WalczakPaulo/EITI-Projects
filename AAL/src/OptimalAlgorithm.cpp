@@ -117,8 +117,6 @@ int OptimalAlgorithm::calculateSimple(int *tab, int size) {
         {
             DD=onesArray[array[i]]*(onesArray[array[i]]-1)/2;
             D=0;
-            int counter = 0;
-            int Ds[1024] = {0};
             int j = 1;
             for (j=1; array[i] > array[j] * 2; j++)
                 if (array[j]>array[j-1]){
