@@ -6,6 +6,7 @@
 #define AAL_MENU_H
 #include "FileOperations.h"
 #include "Combinations.h"
+#include "OptimalAlgorithm.h"
 #include <vector>
 class Menu {
 public:
@@ -28,6 +29,8 @@ public:
     void useSimpleOptimal();
     void cleanTheMess();
     void presentJob();
+    void showCombinations();
+    OptimalAlgorithm *optimalAlgorithm;
 private:
     int arrayOfSticks[102400];
     int howManySticks;

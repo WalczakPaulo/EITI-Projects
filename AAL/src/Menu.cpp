@@ -64,8 +64,9 @@ void Menu::typeChoice(){
             cleanTheMess();
             break;
         case 5:
-            useOptimalAlgorithm();
-            presentJob();
+            useSimpleOptimal();
+            showCombinations();
+            waitForAction();
             cleanTheMess();
             showMenu();
             break;
@@ -107,8 +108,7 @@ void Menu::presentJob() {
 }
 
 void Menu::fullEngineExecution(){
-    long long ans1[4] = {};
-    long long ans2[4] = {};
+   
     howManySticks = 100000;
     generateRandomData();
     for(int i = 0 ; i < 20; i++ ) {
@@ -120,6 +120,8 @@ void Menu::fullEngineExecution(){
         //if (ans1[i%20]!=ans2[i%20])
          //   cout << " okejjj" << endl;
         //    presentJob();
+        showCombinations();
+        waitForAction();
         cleanTheMess();
     }
 }
@@ -195,6 +197,7 @@ void Menu::cleanTheMess(){
     sidesCombinations->clear();
     cout << sidesCombinations->size() << endl;
     cout << "End of cleaning" << endl;
+    delete(optimalAlgorithm);
 }
 
 void Menu::useBruteforce() {
@@ -212,7 +215,7 @@ void Menu::useBruteforce() {
 }
 
 void Menu::useSimpleOptimal() {
-    OptimalAlgorithm *optimalAlgorithm = new OptimalAlgorithm();
+    optimalAlgorithm = new OptimalAlgorithm();
     auto start = std::chrono::high_resolution_clock::now();
     howManyCombinations = optimalAlgorithm->calculateSimple(arrayOfSticks,howManySticks);
     auto elapsed = std::chrono::high_resolution_clock::now() - start;
@@ -221,12 +224,12 @@ void Menu::useSimpleOptimal() {
     whichAlgorithmWasUsed = 1;
     fileOperator->writeOptimalAlgorithmTime(howManySticks, timeExecution);
     fileOperator->writeRawData(howManySticks,timeExecution);
-    delete(optimalAlgorithm);
+
 }
 
 void Menu::useOptimalAlgorithm() {
 
-    OptimalAlgorithm *optimalAlgorithm = new OptimalAlgorithm();
+    optimalAlgorithm = new OptimalAlgorithm();
     auto start = std::chrono::high_resolution_clock::now();
     howManyCombinations = optimalAlgorithm->calculateSolution(arrayOfSticks,howManySticks, *sidesCombinations);
     auto elapsed = std::chrono::high_resolution_clock::now() - start;
@@ -235,7 +238,6 @@ void Menu::useOptimalAlgorithm() {
     whichAlgorithmWasUsed = 1;
     fileOperator->writeOptimalAlgorithmTime(howManySticks, timeExecution);
     fileOperator->writeRawData(howManySticks,timeExecution);
-    delete(optimalAlgorithm);
 
 }
 
@@ -266,4 +268,8 @@ void Menu::printSolutions() {
 
 void Menu::showExecutionTime(){
     cout << "Execution of program took: " << timeExecution << " ms" << endl;
+}
+
+void Menu::showCombinations() {
+    optimalAlgorithm->showCombinations(howManySticks);
 }
