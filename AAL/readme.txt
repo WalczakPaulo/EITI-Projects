@@ -76,3 +76,8 @@ przetrzymywania par patyków sumuj¹cych siê do szczególnych d³ugoœci.
 	main.cpp – uruchamia program
 	AnalysisOfAlgorithm.m – skrypt napisany w Matlab, do przeprowadzenia analizy z³o¿onoœci. 
 
+6. --Uwaga na temat plików--
+	W programie domyœlnie ustawione s¹ œcie¿ki dla plików do zapisu/odczytu/modyfikacji.
+	W celu poprawnego wykonania operacji na plikach, nale¿y uruchomiæ opcjê programu nr 8
+	i odpowiednio podaæ œcie¿ki do programów np:
+	"D:\\Users\\Paul\\ClionProjects\\AAL\\bruteforceTime.txt"
