@@ -14,15 +14,21 @@ public:
     void setBruteforceFile(string);
     void setOptimalAlgorithmFile(string);
     void setInputFile(string);
+    void setRawRunningTimeFile(string);
     string getBruteforceFile();
     string getOptimalAlgorithmFile();
     string getInputFile();
+    string getRawRunningTimeFile();
     void writeBruteforceTime(int,double);
     void writeRawData(int, double); // for MATLAB
     void writeOptimalAlgorithmTime(int, double);
     void createInputFile();
+    void createRawRunningTimeFile();
+    void createBruteforceFile();
+    void createOptimalAlgorithmFile();
     int loadDataFromFile(int array[]);
 private:
+    string rawRunningTimeFile;
     string bruteforceFile;
     string optimalAlgorithmFile;
     string inputFile;

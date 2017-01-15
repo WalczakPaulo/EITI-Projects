@@ -52,6 +52,10 @@ void FileOperations::setInputFile(string file) {
     this->inputFile = file;
 }
 
+void FileOperations::setRawRunningTimeFile(string file){
+    this->rawRunningTimeFile = file;
+}
+
 string FileOperations::getBruteforceFile() {
     return bruteforceFile;
 }
@@ -104,6 +108,35 @@ void FileOperations::createInputFile() {
     ofstream file;
     setInputFile(inputFile);
     file.open(inputFile,fstream::app);
-    file << "\nThe Running time was:   ms for the input size of " ;
+    file.close();
+}
+
+void FileOperations::createRawRunningTimeFile() {
+    string rawRunningTimeFile;
+    cout << "Enter your string for raw Running Time file. " << endl;
+    cin >> rawRunningTimeFile;
+    ofstream file;
+    setRawRunningTimeFile(rawRunningTimeFile);
+    file.open(rawRunningTimeFile,fstream::app);
+    file.close();
+}
+
+void FileOperations::createOptimalAlgorithmFile() {
+    string optimalFile;
+    cout << "Enter your string for optimal Algorithm file. " << endl;
+    cin >> optimalFile;
+    ofstream file;
+    setOptimalAlgorithmFile(optimalFile);
+    file.open(optimalFile,fstream::app);
+    file.close();
+}
+
+void FileOperations::createBruteforceFile() {
+    string bruteforceFile;
+    cout << "Enter your string for bruteforce time file. " << endl;
+    cin >> bruteforceFile;
+    ofstream file;
+    setBruteforceFile(bruteforceFile);
+    file.open(bruteforceFile,fstream::app);
     file.close();
 }

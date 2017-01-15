@@ -18,9 +18,9 @@ Combinations::Combinations(int a , int b , int c , int d , int e , int f, bool i
 
 void Combinations::setSides(int a , int b , int c , int d , int e , int f) {
     sidesIndices[0] = a;
-    sidesIndices[1] = b;
+    sidesIndices[3] = b;
     sidesIndices[2] = c;
-    sidesIndices[3] = d;
+    sidesIndices[1] = d;
     sidesIndices[4] = e;
     sidesIndices[5] = f;
 }
@@ -107,10 +107,10 @@ void Combinations::printSides(int *array) {
             cout << "2. Side" << endl;
             cout << "Index " << sidesIndices[4] << " -> " << "Length " <<array[sidesIndices[4]] << endl;
             cout << "3. Side" << endl;
-            cout << "Index " << sidesIndices[3] << " -> " <<"Length " << array[sidesIndices[3]] << endl;
+            cout << "Index " << sidesIndices[1] << " -> " <<"Length " << array[sidesIndices[1]] << endl;
             cout << "4. Side" << endl;
             cout << "Index " << sidesIndices[2] << " -> " << "Length " <<array[sidesIndices[2]] << endl;
-            cout << "Index " << sidesIndices[1] << " -> " << "Length " <<array[sidesIndices[1]] << endl;
+            cout << "Index " << sidesIndices[3] << " -> " << "Length " <<array[sidesIndices[3]] << endl;
             cout << "Index " <<  sidesIndices[0] << " -> " << "Length " << array[sidesIndices[0]] << endl;
 
 

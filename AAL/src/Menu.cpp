@@ -33,7 +33,7 @@ void Menu::showMenu(){
     cout << "5. Use optimized algorithm. " << endl;
     cout << "6. Generate Data, measure time and present the job. " << endl;
     cout << "7. Show data. " << endl;
-    cout << "8. Set input file" << endl;
+    cout << "8. Set input file, bruteforce file, optimal alg file and raw running time file" << endl;
     cout << "9. Securely finish the program. \n" << endl;
 
 
@@ -60,8 +60,10 @@ void Menu::typeChoice(){
             break;
         case 4:
             useBruteforce();
-            presentJob();
+            printSolutions();
+            waitForAction();
             cleanTheMess();
+            showMenu();
             break;
         case 5:
             useSimpleOptimal();
@@ -79,6 +81,10 @@ void Menu::typeChoice(){
             break;
         case 8:
             fileOperator->createInputFile();
+            fileOperator->createBruteforceFile();
+            fileOperator->createOptimalAlgorithmFile();
+            fileOperator->createRawRunningTimeFile();
+            break;
         case 9:
             exitProgram();
             break;
@@ -110,11 +116,18 @@ void Menu::presentJob() {
 }
 
 void Menu::fullEngineExecution(){
-
-    howManySticks = 100000;
+    int n;
+    int size;
+    cout << "How many maximum sticks you want (max. 100000) ?" << endl;
+    do cin >> size;
+           while ( size < 0 && size > 100000);
+    howManySticks = size;
+    cout << "How many tests ?" << endl;
+    do cin >> n;
+        while ( n < 0 || n > 100000);
     generateRandomData();
-    for(int i = 0 ; i < 20; i++ ) {
-        howManySticks = i * 5000;
+    for(int i = 0 ; i < n; i++ ) {
+        howManySticks = i * size/n;
         useSimpleOptimal();
         cleanTheMess();
     }
@@ -184,6 +197,7 @@ void Menu::cleanTheMess(){
     {
         delete (*it);
     }
+    sidesCombinations->clear();
     cout << "End of cleaning..." << endl;
     delete(optimalAlgorithm);
 }
