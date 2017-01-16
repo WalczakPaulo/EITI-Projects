@@ -129,7 +129,7 @@ void Combinations::printSides(int *array) {
         }
 
         cout << endl;
-    }
+}
 
 
 

@@ -20,9 +20,6 @@ QuickSorter::~QuickSorter()
 
 void QuickSorter::sort(int arr[], int start, int end, int arrayOfIndices[] )
 {
-      //  if (arr==NULL)
-       //     return ;
-
 
         if( start < end)
         {

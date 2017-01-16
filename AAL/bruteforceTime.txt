@@ -42,3 +42,6 @@ The Running time was: 0 ms for the input size of 6
 The Running time was: 0 ms for the input size of 6
 The Running time was: 0 ms for the input size of 7
 The Running time was: 60264 ms for the input size of 100
+The Running time was: 46 ms for the input size of 30
+The Running time was: 0 ms for the input size of 7
+The Running time was: 1 ms for the input size of 7

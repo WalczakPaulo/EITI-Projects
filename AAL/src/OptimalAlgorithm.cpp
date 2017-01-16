@@ -131,6 +131,10 @@ int OptimalAlgorithm::calculateSimple(int *tab, int size) {
     return ans;
 }
 
+/*
+ *  Method below used only for test purposes.
+ */
+
 int OptimalAlgorithm::calculateSolution(int *tab, int size, vector <Combinations*> &sidesCombinations) {
     QuickSorter quickSorter = QuickSorter();
     for(int i = 0 ; i < size ; i++)

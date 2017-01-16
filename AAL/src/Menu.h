@@ -7,6 +7,7 @@
 #include "FileOperations.h"
 #include "Combinations.h"
 #include "OptimalAlgorithm.h"
+#include "Bruteforce.h"
 #include <vector>
 class Menu {
 public:
@@ -30,15 +31,17 @@ public:
     void cleanTheMess();
     void presentJob();
     void showCombinations();
-    OptimalAlgorithm *optimalAlgorithm;
+    void createFiles();
 private:
-    int arrayOfSticks[102400];
-    int howManySticks;
+    OptimalAlgorithm *optimalAlgorithm;
+    Bruteforce *bruteforce;
     FileOperations *fileOperator;
     vector <Combinations*> *sidesCombinations;
+    int arrayOfSticks[102400];
+    int howManySticks;
     int howManyCombinations;
     double timeExecution;
-    bool whichAlgorithmWasUsed;
+    int whichAlgorithmWasUsed; // 0 - bruteforce, 1- optimal, 2- none
 };
 
 

@@ -10,7 +10,7 @@ using namespace std;
 
 class FileOperations {
 public:
-    FileOperations(string, string, string);
+    FileOperations(string, string, string, string);
     void setBruteforceFile(string);
     void setOptimalAlgorithmFile(string);
     void setInputFile(string);

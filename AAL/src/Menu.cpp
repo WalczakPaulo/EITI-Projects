@@ -13,10 +13,10 @@ using namespace std;
 
 
 
-Menu::Menu(): arrayOfSticks {0} , howManySticks(0), howManyCombinations(0), timeExecution(0), whichAlgorithmWasUsed(0)   {
+Menu::Menu(): arrayOfSticks {0} , howManySticks(0), howManyCombinations(0), timeExecution(0), whichAlgorithmWasUsed(2)   {
     sidesCombinations = new vector <Combinations*>();
     sidesCombinations->reserve(10000000);
-    fileOperator = new FileOperations("D:\\Users\\Paul\\ClionProjects\\AAL\\bruteforceTime.txt", "D:\\Users\\Paul\\ClionProjects\\AAL\\optimalAlgorithmTime.txt", "D:\\Users\\Paul\\ClionProjects\\AAL\\dataInput.txt");
+    fileOperator = new FileOperations("C:\\Users\\Paul\\Desktop\\GIT_EITI\\AAL\\bruteforceTime.txt", "C:\\Users\\Paul\\Desktop\\GIT_EITI\\AAL\\optimalAlgorithmTime.txt", "C:\\Users\\Paul\\Desktop\\GIT_EITI\\AAL\\dataInput.txt","C:\\Users\\Paul\\Desktop\\GIT_EITI\\AAL\\rawRunningTimeData.txt");
 }
 
 Menu::~Menu() {
@@ -69,7 +69,6 @@ void Menu::typeChoice(){
             useSimpleOptimal();
             presentJob();
             waitForAction();
-            cleanTheMess();
             showMenu();
             break;
         case 6:
@@ -80,10 +79,8 @@ void Menu::typeChoice(){
             showData();
             break;
         case 8:
-            fileOperator->createInputFile();
-            fileOperator->createBruteforceFile();
-            fileOperator->createOptimalAlgorithmFile();
-            fileOperator->createRawRunningTimeFile();
+            createFiles();
+            showMenu();
             break;
         case 9:
             exitProgram();
@@ -100,6 +97,13 @@ int Menu::exitProgram(){
 
 }
 
+void Menu::createFiles(){
+    fileOperator->createInputFile();
+    fileOperator->createBruteforceFile();
+    fileOperator->createOptimalAlgorithmFile();
+    fileOperator->createRawRunningTimeFile();
+
+}
 void Menu::presentJob() {
     char answer;
     cout << "Do you want to see the results ? (y/n)" << endl;
@@ -116,18 +120,18 @@ void Menu::presentJob() {
 }
 
 void Menu::fullEngineExecution(){
-    int n;
-    int size;
+    int testsNumber;
+    int sticksNumber;
     cout << "How many maximum sticks you want (max. 100000) ?" << endl;
-    do cin >> size;
-           while ( size < 0 && size > 100000);
-    howManySticks = size;
+    do cin >> sticksNumber;
+           while ( sticksNumber < 0 && sticksNumber > 100000);
+    howManySticks = sticksNumber;
     cout << "How many tests ?" << endl;
-    do cin >> n;
-        while ( n < 0 || n > 100000);
+    do cin >> testsNumber;
+        while ( testsNumber < 0 || testsNumber > 100000);
     generateRandomData();
-    for(int i = 0 ; i < n; i++ ) {
-        howManySticks = i * size/n;
+    for(int i = 0 ; i < testsNumber; i++ ) {
+        howManySticks = i * sticksNumber/testsNumber;
         useSimpleOptimal();
         cleanTheMess();
     }
@@ -145,14 +149,11 @@ void Menu::generateRandomData() {
 
 void Menu::showProjectInfo(){
 
-    char n;
     system("CLS");
     cout << " We have a set of N unbreakable sticks with lengths s[i], where i is (1,2,3,4,5...,N). Find an algorithm which will evaluate" <<
            " on how many ways we can build a square using 6 of given sticks, and will show which should one use. " << endl;
     cout << "\n Type anything" << endl;
-
     getchar();
-
     showMenu();
 }
 
@@ -199,12 +200,15 @@ void Menu::cleanTheMess(){
     }
     sidesCombinations->clear();
     cout << "End of cleaning..." << endl;
-    delete(optimalAlgorithm);
+    if (whichAlgorithmWasUsed == 1)
+        delete(optimalAlgorithm);
+    else if(whichAlgorithmWasUsed == 0)
+        delete(bruteforce);
 }
 
 void Menu::useBruteforce() {
 
-    Bruteforce *bruteforce =new Bruteforce();
+    bruteforce =new Bruteforce();
     auto start = std::chrono::high_resolution_clock::now();
     howManyCombinations = bruteforce->calculateBruteforce(arrayOfSticks,howManySticks, *sidesCombinations);
     auto elapsed = std::chrono::high_resolution_clock::now() - start;
@@ -213,7 +217,6 @@ void Menu::useBruteforce() {
     whichAlgorithmWasUsed = 0;
     fileOperator->writeBruteforceTime(howManySticks, timeExecution);
     fileOperator->writeRawData(howManySticks, timeExecution);
-    delete(bruteforce);
 }
 
 void Menu::useSimpleOptimal() {
@@ -230,20 +233,7 @@ void Menu::useSimpleOptimal() {
 
 }
 
-void Menu::useOptimalAlgorithm() {
 
-    optimalAlgorithm = new OptimalAlgorithm();
-    cout << "Start the job " << endl;
-    auto start = std::chrono::high_resolution_clock::now();
-    howManyCombinations = optimalAlgorithm->calculateSolution(arrayOfSticks,howManySticks, *sidesCombinations);
-    auto elapsed = std::chrono::high_resolution_clock::now() - start;
-    long long microseconds = std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count();
-    double timeExecution = microseconds/1000;
-    whichAlgorithmWasUsed = 1;
-    fileOperator->writeOptimalAlgorithmTime(howManySticks, timeExecution);
-    fileOperator->writeRawData(howManySticks,timeExecution);
-
-}
 
 void Menu::waitForAction(){
     getchar();
@@ -277,3 +267,18 @@ void Menu::showExecutionTime(){
 void Menu::showCombinations() {
     optimalAlgorithm->showCombinations(howManySticks);
 }
+
+//void Menu::useOptimalAlgorithm() {
+//
+//    optimalAlgorithm = new OptimalAlgorithm();
+//    cout << "Start the job " << endl;
+//    auto start = std::chrono::high_resolution_clock::now();
+//    howManyCombinations = optimalAlgorithm->calculateSolution(arrayOfSticks,howManySticks, *sidesCombinations);
+//    auto elapsed = std::chrono::high_resolution_clock::now() - start;
+//    long long microseconds = std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count();
+//    double timeExecution = microseconds/1000;
+//    whichAlgorithmWasUsed = 1;
+//    fileOperator->writeOptimalAlgorithmTime(howManySticks, timeExecution);
+//    fileOperator->writeRawData(howManySticks,timeExecution);
+//
+//}

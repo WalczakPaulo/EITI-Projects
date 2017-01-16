@@ -431,3 +431,4 @@ The Running time was: 20577 ms for the input size of 80000
 The Running time was: 22412 ms for the input size of 85000
 The Running time was: 27450 ms for the input size of 90000
 The Running time was: 33576 ms for the input size of 95000
+The Running time was: 0 ms for the input size of 7

@@ -15,8 +15,6 @@ public:
     void sort(int tab[], int left, int right, int[]);
     void swap(int &src, int &dest);
     int partition(int arr[], int start, int end, int[]);
-    void fillArrayOfIndices();
-
 
 };
 

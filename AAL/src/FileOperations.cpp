@@ -9,35 +9,12 @@
 #include<sstream>
 using namespace std;
 
-FileOperations::FileOperations(string brute, string optimal, string input) {
+
+FileOperations::FileOperations(string brute, string optimal, string input, string rawData) {
     setBruteforceFile(brute);
     setOptimalAlgorithmFile(optimal);
     setInputFile(input);
-}
-
-
-
-void FileOperations::writeBruteforceTime(int size, double runningTime) {
-    ofstream file;
-    file.open(getBruteforceFile(),fstream::app);
-    file << "\nThe Running time was: " << runningTime << " ms for the input size of " << size;
-    file.close();
-
-}
-
-void FileOperations::writeOptimalAlgorithmTime(int size, double runningTime) {
-    ofstream file;
-    file.open(getOptimalAlgorithmFile(),fstream::app);
-    file << "\nThe Running time was: " << runningTime << " ms for the input size of " << size;
-    file.close();
-}
-
-void FileOperations::writeRawData(int size, double runningTime){
-    ofstream file;
-    file.open("D:\\Users\\Paul\\ClionProjects\\AAL\\rawRunningTimeData.txt" ,fstream::app);
-    file  << runningTime << "\n";
-    file << size << "\n";
-    file.close();
+    setRawRunningTimeFile(rawData);
 }
 
 void FileOperations::setBruteforceFile(string file) {
@@ -68,12 +45,40 @@ string FileOperations::getInputFile() {
     return inputFile;
 }
 
+string FileOperations::getRawRunningTimeFile(){
+    return rawRunningTimeFile;
+}
+
+void FileOperations::writeBruteforceTime(int size, double runningTime) {
+    ofstream file;
+    file.open(getBruteforceFile(),fstream::app);
+    file << "\nThe Running time was: " << runningTime << " ms for the input size of " << size;
+    file.close();
+
+}
+
+void FileOperations::writeOptimalAlgorithmTime(int size, double runningTime) {
+    ofstream file;
+    file.open(getOptimalAlgorithmFile(),fstream::app);
+    file << "\nThe Running time was: " << runningTime << " ms for the input size of " << size;
+    file.close();
+}
+
+void FileOperations::writeRawData(int size, double runningTime){
+    ofstream file;
+    file.open(getRawRunningTimeFile(),fstream::app);
+    file  << runningTime << "\n";
+    file << size << "\n";
+    file.close();
+}
+
+
 int FileOperations::loadDataFromFile(int *array) {
     int i = 0;
     int sizeOfInput;
 
     ifstream infile;
-    infile.open(inputFile);
+    infile.open(getInputFile());
     if (infile.good())
         cout<<"Success opening file"<< endl;
     else {
@@ -108,6 +113,12 @@ void FileOperations::createInputFile() {
     ofstream file;
     setInputFile(inputFile);
     file.open(inputFile,fstream::app);
+    if (file.good())
+        cout<<"Success screating file"<< endl;
+    else {
+        cout << "Error while opening file"<< endl;
+        exit(1);
+    }
     file.close();
 }
 
@@ -118,6 +129,12 @@ void FileOperations::createRawRunningTimeFile() {
     ofstream file;
     setRawRunningTimeFile(rawRunningTimeFile);
     file.open(rawRunningTimeFile,fstream::app);
+    if (file.good())
+        cout<<"Success screating file"<< endl;
+    else {
+        cout << "Error while opening file"<< endl;
+        exit(1);
+    }
     file.close();
 }
 
@@ -128,6 +145,12 @@ void FileOperations::createOptimalAlgorithmFile() {
     ofstream file;
     setOptimalAlgorithmFile(optimalFile);
     file.open(optimalFile,fstream::app);
+    if (file.good())
+        cout<<"Success creating file"<< endl;
+    else {
+        cout << "Error while opening file"<< endl;
+        exit(1);
+    }
     file.close();
 }
 
@@ -138,5 +161,11 @@ void FileOperations::createBruteforceFile() {
     ofstream file;
     setBruteforceFile(bruteforceFile);
     file.open(bruteforceFile,fstream::app);
+    if (file.good())
+        cout<<"Success screating file"<< endl;
+    else {
+        cout << "Error while opening file"<< endl;
+        exit(1);
+    }
     file.close();
 }

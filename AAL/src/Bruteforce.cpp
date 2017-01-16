@@ -14,16 +14,15 @@ Bruteforce::Bruteforce(): array{0}, arrOfIndices{0} {
 
 int Bruteforce::calculateBruteforce(int *tab, int size, vector <Combinations*> &sidesCombinations) {
 
-    QuickSorter quickSorter = QuickSorter();
-    for(int i = 0 ; i < 3009 ; i++)
-        arrOfIndices[i] = i;
     int n = size;
+    long long ans=0;
+    QuickSorter quickSorter = QuickSorter();
+    for(int i = 0 ; i < n ; i++)
+        arrOfIndices[i] = i;
+
     for (int i=0;i<n;i++) array[i] = tab[i];
 
     quickSorter.sort(array,0,n-1,arrOfIndices);
-    long long ans=0;
-
-
 
 
     int tempTab[6]={0};
