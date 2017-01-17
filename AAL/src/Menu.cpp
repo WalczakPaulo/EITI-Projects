@@ -69,6 +69,7 @@ void Menu::typeChoice(){
             useSimpleOptimal();
             presentJob();
             waitForAction();
+            cleanTheMess();
             showMenu();
             break;
         case 6:
